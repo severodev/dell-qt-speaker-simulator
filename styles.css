@@ -1,0 +1,28 @@
+body, html {
+  height: 100%;
+  background-color: black;
+  overflow: hidden;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("https://ik.imagekit.io/3ko9xw9bs/qt-simulator/test_screen_JnStxVLX3.png?updatedAt=1692622144384");
+
+  /* Full height */
+  height: 100%;
+
+  margin: 0 !important;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.audio-number {
+  font-size: 3rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0 3rem 0;
+}

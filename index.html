@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Speaker Test - QT - NOTEBOOK</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="icon" href="audio-svgrepo-com.svg" type="image/svg+xml">
+
+</head>
+<html>
+
+<body>
+
+    <audio id="audio1">
+        <!-- <source src="horse.ogg" type="audio/ogg"> -->
+        <source src="um_cut_vol.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio2">
+        <!-- <source src="horse.ogg" type="audio/ogg"> -->
+        <source src="dois_cut_vol.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="audio3">
+        <!-- <source src="horse.ogg" type="audio/ogg"> -->
+        <source src="tres_cut_vol.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="bg">
+
+        <!-- Audio Modal -->
+        <div class="modal fade" id="audioModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="audio-number">
+                            <span><img src="audio-svgrepo-com.svg" height="80" width="80" alt=""></span>&nbsp;
+                            <h1 class="display-1"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+
+    <script>
+
+        var lastSound = null;
+        var ready = true;
+
+        var a1 = document.getElementById("audio1");
+        var a2 = document.getElementById("audio2");
+        var a3 = document.getElementById("audio3");
+
+        var soundList = [a1, a2, a3]
+
+        function playSound(audioNumber) {
+            ready = false;
+            lastSound = soundList[audioNumber];
+            lastSound.play();
+            showModal(audioNumber);
+        }
+        function pauseSound() {
+            if (lastSound) {
+                lastSound.pause();
+            }
+        }
+
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        function showModal(audioNumber) {
+            $(".display-1").html(audioNumber + 1);
+            $("#audioModal").modal('show');
+            setTimeout(() => {
+                $("#audioModal").modal('hide');
+                ready = true;
+            }, 3000);
+        }
+
+        $("body").keyup(function (event) {
+            if(!ready)
+                return;
+
+            pauseSound();
+            switch (event.which) {
+                case 9:  // Tab
+                case 16: // Shift
+                case 17: // Ctrl
+                case 18: // Alt
+                case 27: // Esc
+                    break;
+                case 49: // 1
+                case 97: // 1 NumPad
+                    playSound(0);
+                    break;
+                case 50: // 2
+                case 98: // 2 NumPad
+                    playSound(1);
+                    break;
+                case 51: // 3
+                case 99: // 3 NumPad
+                    playSound(2);
+                    break;
+                case 122: // F11 - Full Screen
+                case 123: // F12 - Inspect Page
+                    break;
+                default:
+                    var number = randomNumber(0, 3);
+                    playSound(number);
+                    break;
+            }
+        });
+
+    </script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+
+</body>
+
+</html>
