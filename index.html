@@ -89,12 +89,12 @@
         }
 
         function showModal(audioNumber) {
-            $(".display-1").html(audioNumber + 1);
-            // $("#audioModal").modal('show');
+            // $(".display-1").html(audioNumber + 1);
+            $("#audioModal").modal('show');
             setTimeout(() => {
-                // $("#audioModal").modal('hide');
+                $("#audioModal").modal('hide');
                 ready = true;
-            }, 2000);
+            }, 3000);
         }
 
         $("body").keyup(function (event) {
@@ -132,8 +132,6 @@
         });
 
     </script>
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
 
 </body>
 
